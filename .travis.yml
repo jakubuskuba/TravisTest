@@ -10,7 +10,7 @@ env:
 addons:
   coverity_scan:
     project:
-      name: "TravisTest"
+      name: "jakubuskuba/TravisTest"
       description: "Build submitted via Travis CI"
     notification_email: jakubus_kuba@o2.pl
     build_command:   "mvn clean -DskipTests=true compile"
