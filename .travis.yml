@@ -1,2 +1,17 @@
 language: java
 script: mvn clean package
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "my97cMNiskIJ8k+OY3vn1ODLA7LaKhSo+3f213tIrSf34aJtaF5L0rKtWKVRsion8jh4d3cdwVcjUzt56rg/bUPU//P2Fjw71ktXXg+OYtpZ2UePF49kcIGkbIdN3y3Bd3w3uuSb24FfhRYPmXQcXdmDXYRfTL+rM+sh/h+eYpY="
+
+addons:
+  coverity_scan:
+    project:
+      name: "jakubuskuba/TravisTest"
+      description: "Build submitted via Travis CI"
+    notification_email: jakubus_kuba@o2.pl
+    build_command:   "mvn clean -DskipTests=true compile"
+    branch_pattern: master
