@@ -14,4 +14,4 @@ addons:
       description: "Build submitted via Travis CI"
     notification_email: jakubus_kuba@o2.pl
     build_command:   "mvn clean -DskipTests=true compile"
-    branch_pattern: slice-*
+    branch_pattern: slice
