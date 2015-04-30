@@ -1,8 +1,11 @@
 language: java
-script: mvn clean package
+script: mvn clean compile
 
 after_success:
-  - mvn jacoco:report org.eluder.coveralls:coveralls-maven-plugin:report
+  - mvn coveralls:report
+
+
+#  - mvn jacoco:report org.eluder.coveralls:coveralls-maven-plugin:report
 
 #env:
 #  global:
