@@ -1,5 +1,6 @@
 language: java
 
+- chmod 444 ./run_build.sh
 before_script: ./run_build.sh
 #AUTH_RES=`curl -s --form project="$COVERITY_SCAN_PROJECT_NAME" --form token="$COVERITY_SCAN_TOKEN" $SCAN_URL/api/upload_permitted`
 #- AUTH_RES=`curl -s --form project="jakubuskuba/TravisTest" --form token="$COVERITY_SCAN_TOKEN" https://scan.coverity.com/api/upload_permitted`
