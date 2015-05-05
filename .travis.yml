@@ -1,6 +1,15 @@
 language: java
 script: mvn clean package
 
+#after_success:
+#  - ant instrument
+#  - mvn test
+#  - ant report
+#  - mvn coveralls:report
+
+
+#  - mvn jacoco:report org.eluder.coveralls:coveralls-maven-plugin:report
+
 env:
   global:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
@@ -13,5 +22,5 @@ addons:
       name: "jakubuskuba/TravisTest"
       description: "Build submitted via Travis CI"
     notification_email: jakubus_kuba@o2.pl
-    build_command:   "mvn clean -DskipTests=true compile"
-    branch_pattern: slice-*
+    build_command:   "mvn clean compile -DskipTests=true "
+    branch_pattern: master
