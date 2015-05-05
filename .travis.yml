@@ -3,6 +3,7 @@ language: java
 
 before_script:
 - chmod +x ./run_build.sh
+- export AUTH
 - ./run_build.sh
 - echo $AUTH
 #AUTH_RES=`curl -s --form project="$COVERITY_SCAN_PROJECT_NAME" --form token="$COVERITY_SCAN_TOKEN" $SCAN_URL/api/upload_permitted`
