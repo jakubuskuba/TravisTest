@@ -6,6 +6,7 @@ AUTH_RES=`curl -s --form project="jakubuskuba/TravisTest" --form token="$COVERIT
 echo $AUTH_RES
 AUTH=`echo $AUTH_RES | ruby -e "require 'rubygems'; require 'json'; puts JSON[STDIN.read]['upload_permitted']"`
 echo $AUTH
+export AUTH
 
 
 
