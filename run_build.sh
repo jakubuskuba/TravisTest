@@ -4,9 +4,15 @@ set -ev
 
 AUTH_RES=`curl -s --form project="jakubuskuba/TravisTest" --form token="$COVERITY_SCAN_TOKEN" https://scan.coverity.com/api/upload_permitted`
 AUTH=`echo $AUTH_RES | ruby -e "require 'rubygems'; require 'json'; puts JSON[STDIN.read]['upload_permitted']"`
-echo $AUTH_RES
+#echo $AUTH_RES
 echo $AUTH
-echo "master1"
+#echo "master1"
+
+if [ "$AUTH" = "true" ]; then
+  echo "master"
+else
+  echo "non_existing_brunch_name"
+fi
 
 
 
