@@ -1,4 +1,22 @@
 language: java
+
+before_script:
+- AUTH_RES=`curl -s --form project="$COVERITY_SCAN_PROJECT_NAME" --form token="$COVERITY_SCAN_TOKEN" $SCAN_URL/api/upload_permitted`
+- if [ "$AUTH_RES" = "Access denied" ]; then
+  echo -e "\033[33;1mXXXXXXXXXXXXXXXXXXXXXCoverity Scan API access denied. Check COVERITY_SCAN_PROJECT_NAME and COVERITY_SCAN_TOKEN.\033[0m"
+#  exit 1
+else
+  AUTH=`echo $AUTH_RES | ruby -e "require 'rubygems'; require 'json'; puts JSON[STDIN.read]['upload_permitted']"`
+  if [ "$AUTH" = "true" ]; then
+    echo -e "\033[33;1mXXXXXXXXXXXXXXXXXXCoverity Scan analysis authorized per quota.\033[0m"
+  else
+    WHEN=`echo $AUTH_RES | ruby -e "require 'rubygems'; require 'json'; puts JSON[STDIN.read]['next_upload_permitted_at']"`
+    echo -e "\033[33;1mXXXXXXXXXXXXXXXXXCoverity Scan analysis NOT authorized until $WHEN.\033[0m"
+#    exit 1
+  fi
+fi
+
+
 script: mvn clean package
 
 #after_success:
